@@ -38,4 +38,5 @@ if __name__ == "__main__":
     list = [1,2,3,4,5,6]
     print(list)
     rev_recursion(list, 0, len(list)-1)
+    
     print(list)
