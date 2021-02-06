@@ -47,7 +47,7 @@ def kth_usingquickselect(list,startIndex, endIndex, k):
     return float("-inf")
 
 if __name__ == "__main__":
-    arr = [3,10,-2,1,5,7]
+    arr = [12, 5, 787, 1, 23]
     k=int(input())
     print(kth_usingquickselect(arr,0, len(arr)-1,k))
 
