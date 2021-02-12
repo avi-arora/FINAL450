@@ -6,7 +6,57 @@ class ListNode:
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         """
-        Stack based solutions
+        Basic math based approach
+        TC: 
+        SC: 
+        """
+        sum, carry = 0, 0
+        result = temp = None
+        while l1 and l2:
+            sum = l1.val + l2.val + carry
+            if sum > 9:
+                sum, carry = sum%10, sum//10
+            else: 
+                carry = 0
+            node = ListNode(sum)
+            if temp:
+                temp.next = node
+                temp = node
+            else:
+                result = temp = node
+            
+            #update the list 
+            l1, l2 = l1.next, l2.next
+        #some items are left 
+        while l1:
+            sum = l1.val + carry
+            if sum > 9:
+                sum, carry = sum%10, sum//10
+            else: 
+                carry = 0
+            node = ListNode(sum)
+            temp.next = node
+            temp = node
+            l1 = l1.next
+        while l2:
+            sum = l2.val + carry
+            if sum > 9:
+                sum, carry = sum%10, sum//10
+            else:
+                carry = 0
+            node = ListNode(sum)
+            temp.next = node
+            temp = node
+            l2 = l2.next
+        if carry != 0:
+            node = ListNode(carry)
+            temp.next = node
+        return result
+
+    def IncorrectStackBasedApproach(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """
+        Stack based solutions, valid for some test cases only, 
+        not deleting as to not making such silly mistakes again. 
         TC: O(m+n)
         SC: O(m+n)
         """
