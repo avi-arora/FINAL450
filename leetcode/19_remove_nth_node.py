@@ -9,14 +9,35 @@ class Solution:
         """
         Remove nth node from end of LL in one pass, without extra space
         two pointer approach, (not to confused with slow-fast ptr approach)
+        Algorithm
+        1. place the fast pointer n steps ahead of start from LL
+        2. iterate both temp and fast will fast.next is non empty (this will place the temp before the n node)
+        3. update temp (head in case of corner cases)
         TC: O(N)
         SC: O(1)
         """
-        pass
+        temp = fast = head
+        #place the fast to it's position
+        i = 0
+        while i < n:
+            fast = fast.next
+            i+=1
+        
+        #move fast and temp 
+        while fast and fast.next:
+            temp, fast = temp.next, fast.next
+        
+        if fast: 
+            temp.next = temp.next.next
+        else:
+            head = head.next
+
+        return head
     
     def removeNthFromEndUsingStack(self, head: ListNode, n: int) -> ListNode:
         """
         Removed nth node using stack, only in one pass
+        ACCEPTED
         TC: O(N)
         SC: O(N)
         """
