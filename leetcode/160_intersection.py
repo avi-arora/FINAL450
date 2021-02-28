@@ -5,8 +5,37 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+    def getIntersectionNodeTwoPointer(self, headA: ListNode, headB: ListNode) -> ListNode:
+        lenA, temp = 0, headA
+        while temp:
+            lenA, temp = lenA+1, temp.next
+        lenB, temp = 0, headB
+        while temp:
+            lenB, temp = lenB+1, temp.next
+        
+        #position the iterator
+        itrA, itrB = headA, headB
+        i=0
+        if lenA > lenB:
+            while i < lenA-lenB:
+                itrA = itrA.next
+                i+=1
+        elif lenB > lenA:
+            while i < lenB-lenA:
+                itrB = itrB.next
+                i+=1
+        
+        while itrA and itrB:
+            if itrA == itrB:
+                return itrB.val
+            itrA, itrB = itrA.next, itrB.next
+        
+        return None
+
+
+    def getIntersectionNodeEfficient(self, headA: ListNode, headB: ListNode) -> ListNode:
         pass
+    
 
     def getIntersectionNodeBruteForce(self, headA: ListNode, headB: ListNode) -> ListNode:
         """
@@ -54,3 +83,4 @@ if __name__ == "__main__":
     obj = Solution()
     print(obj.getIntersectionNodeHashTable(headA, headB))
     print(obj.getIntersectionNodeBruteForce(headA, headB))
+    print(obj.getIntersectionNodeTwoPointer(headA, headB))
