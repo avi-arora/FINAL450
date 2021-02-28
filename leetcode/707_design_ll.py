@@ -20,7 +20,7 @@ class MyLinkedList:
             return -1
         
         pos = 0
-        temp = self
+        temp = self.head
         while pos < index and temp:
             temp = temp.next
             pos+=1
