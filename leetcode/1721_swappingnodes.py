@@ -24,6 +24,27 @@ class Solution:
         #swap data
         itrRight.val, itrLeft.val = itrLeft.val, itrRight.val
 
+
+    def swapNodesEfficient(self, head: ListNode, k: int) -> ListNode:
+        if not head: return 
+        temp,i = head, 1
+        while i < k:
+            temp = temp.next
+            i+=1
+        
+        left, right = temp, head
+        while temp:
+            temp = temp.next
+            right = right.next
+        
+        left.val, right.val = right.val, left.val
+
+        return head
+
+            
+        
+
+
 if __name__ == "__main__":
     head = ListNode(1,ListNode(2,ListNode(3,ListNode(4,ListNode(5)))))
     obj = Solution()
