@@ -24,13 +24,52 @@ class Solution:
                 q.append(node.right)
         
         return rangeSum
+    
+    def rangeSumBSTusingBFS(self, root: TreeNode, low: int, high: int) -> int:
+        """
+        TC: O(N)
+        SC: O(N)
+        """
+        rangeSum = 0
+        s = [root]
+        while s:
+            node = s.pop()
+            if node.val >= low and node.val <= high:
+                rangeSum += node.val
             
+            if  node.val > low and node.left:
+                s.append(node.left)
+            if node.val < high and node.right:
+                s.append(node.right)
+        return rangeSum
+    
+    def rangeSumBSTusingDFSRecursive(self, root: TreeNode, low: int, high: int) -> int:
+        """
+        TC: O(N)
+        SC: O(N) due to recursion
+        Status: Accepted (best)
+        """
+        rangeSum = 0
+        def DFSUtil(root: TreeNode):
+            nonlocal rangeSum
+            if root:
+                if root.val >= low and root.val <= high:
+                    rangeSum += root.val
+                
+                if root.val > low and root.left:
+                    DFSUtil(root.left)
+                if root.val < high and root.right:
+                    DFSUtil(root.right)
 
+        DFSUtil(root)
+        return rangeSum
+        
 
-
-
+            
 if __name__ == "__main__":
     obj = Solution()
     root = TreeNode(10,TreeNode(5,TreeNode(3),TreeNode(7)),TreeNode(15,right=TreeNode(18)))
     print(obj.rangeSumBSTusingLevelOrderTraversal(root,7,15))
+    print(obj.rangeSumBSTusingBFS(root, 7, 15))
+    print(obj.rangeSumBSTusingDFSRecursive(root,7,15))
         
