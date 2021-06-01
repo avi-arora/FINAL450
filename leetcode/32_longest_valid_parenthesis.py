@@ -1,5 +1,6 @@
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
+
         """
         ")()())"
         Using stack
@@ -20,6 +21,26 @@ class Solution:
                 result = current
             i+=1
         return result
+    
+    def longestValidParenthesesBruteForce(self, s: str) -> int:
+        """
+        TC: O(N^3)
+        SC: O(N)
+        """
+        pass
+
+    def longestValidParenthesesUsingDP(self, s: str) -> int:
+        pass
+    
+    def longestValidParenthesesSpaceEfficient(self, s: str) -> int:
+        """
+        TC: O(N)
+        SC: O(1)
+        """
+        pass
+        
+        
+    
                 
 
 
